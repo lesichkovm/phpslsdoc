@@ -1,8 +1,17 @@
 <html>
   <head>
     <title>{{ page.title }}</title>
+    <style>
+      html,body {width:100%; height:100%;}
+    </style>
   </head>
   <body>
-    {{ content }}
+    <table style="width:100%; height:100%;">
+      <tr>
+        <td>
+          {{ content }}
+        </td>
+      </tr>
+    </table>
   </body>
 </html>
