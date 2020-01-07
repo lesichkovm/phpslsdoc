@@ -4,34 +4,57 @@ title: PHPSLS - Getting started
 permalink: /getting-started
 ---
 <section>
-  <h1>
-    Getting Started
-  </h1>
-  <h2>
-    Step 1. Create new directory
-  </h2>
-  
-  <h2>
-    Step 2. Install PHPSLS
-  </h2>
-  <pre><code>
-     composer require lesichkovm/phpsls
-  </code></pre>
-  
-  <h2>
-    Step 3. Initialize your environment
-  </h2>
-  <p>
-    <code>
-     vendor/bin/phpsls init
-    </code>
-  </p>
-  <h2>
-    Step 4. Deploy
-  </h2>
-  <p>
-    <code>
-     vendor/bin/phpsls deploy
-    </code>
-  </p>
+  <div class="container">
+    <h1>
+      Getting Started
+    </h1>
+    <h2>
+      Step 1. Create new directory
+    </h2>
+
+    <h2>
+      Step 2. Install PHPSLS
+    </h2>
+    <p>
+      Use composer to include the framework
+    </p>
+    <pre><code>
+       composer require lesichkovm/phpsls
+    </code></pre>
+
+    <h2>
+      Step 3. Initialize your environment
+    </h2>
+    <p>
+      To initialize local environment
+    </p>
+    <pre><code>
+       vendor/bin/phpsls init local
+    </code></pre>
+
+    <p>
+      To initialize live environment
+    </p>
+    <pre><code>
+       vendor/bin/phpsls init live
+    </code></pre>
+
+
+    <h2>
+      Step 4. Preview your code
+    </h2>
+    <p>
+      Serve your code locally so that you can preview
+    </p>
+    <pre><code>
+       vendor/bin/phpsls serve
+    </code></pre>
+
+    <h2>
+      Step 4. Deploy
+    </h2>
+    <pre><code>
+       vendor/bin/phpsls deploy live
+    </code></pre>
+  </div>
 </section>
