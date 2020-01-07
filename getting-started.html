@@ -4,7 +4,7 @@ title: PHPSLS - Getting started
 permalink: /getting-started
 ---
 <section>
-  <div class="container">
+  <div class="container" style="padding:40px 0px;">
     <h1>
       Getting Started
     </h1>
@@ -23,7 +23,7 @@ permalink: /getting-started
     </code></pre>
 
     <h2>
-      Step 3. Initialize your environment
+      Step 3. Initialize your environments
     </h2>
     <p>
       To initialize local environment
@@ -32,6 +32,13 @@ permalink: /getting-started
        vendor/bin/phpsls init local
     </code></pre>
 
+    <p>
+      To initialize staging environment
+    </p>
+    <pre><code>
+       vendor/bin/phpsls init stafing
+    </code></pre>
+    
     <p>
       To initialize live environment
     </p>
@@ -43,15 +50,17 @@ permalink: /getting-started
     <h2>
       Step 4. Preview your code
     </h2>
+    
     <p>
       Serve your code locally so that you can preview
     </p>
+    
     <pre><code>
        vendor/bin/phpsls serve
     </code></pre>
 
     <h2>
-      Step 4. Deploy
+      Step 5. Deploy
     </h2>
     <pre><code>
        vendor/bin/phpsls deploy live
