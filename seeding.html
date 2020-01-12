@@ -1,0 +1,57 @@
+---
+layout: default
+title: Database | Seeding | PHPSLS
+permalink: /seeding
+---
+<section>
+  <div class="container" style="padding:40px 0px;">
+    <h1>
+      Database : Seeding
+    </h1>
+
+    <h2>
+      Introduction
+    </h2>
+    <p>
+        PHPSLS includes a simple method of seeding your
+        databases with data using seed classes.
+        All seed classes are stored in the app/database/seeds
+        directory.
+        Seed classes must be named exactly as the name of the file
+        reside into i.e. TableSeeder in file TableSeeder.php
+    </p>
+
+    <h2>
+      Writing the seeder
+    </h2>
+
+    <pre><code>
+<?php
+
+class TableCountrySeeder {
+
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run() {
+        // Add your seed code here
+    }
+
+}
+    </code></pre>
+
+    <h2>
+      Running the seeder
+    </h2>
+    <p>
+        The "seed" command accepts two arguments. 
+        The environment to be seeded, as well as
+        the name of the seed class to be executed.
+    </p>
+    <pre><code>
+       vendor/bin/phpsls seed local TableCountrySeeder
+    </code></pre>
+  </div>
+</section>
