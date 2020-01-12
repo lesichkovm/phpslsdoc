@@ -1,0 +1,67 @@
+---
+layout: default
+title: Database | Migrations | PHPSLS
+permalink: /migrations
+---
+<section>
+  <div class="container" style="padding:40px 0px;">
+    <h1>
+      Database : Migrations
+    </h1>
+
+    <h2>
+      Introduction
+    </h2>
+    <p>
+        PHPSLS includes a simple method of changing your
+        database schema by using migration classes.
+        All seed migrations are stored in the app/database/migrations
+        directory.
+    </p>
+
+    <h2>
+      Writing the migration
+    </h2>
+
+    <p>
+        File name: 20190617_080923_TableCountryCreate
+    </p>
+
+    <pre><code>
+<?php
+
+class TableCountryCreate {
+
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up() {
+        // Your migration code here
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down() {
+        // Your migration code here
+    }
+
+}
+    </code></pre>
+
+    <h2>
+      Running the migrations
+    </h2>
+    <p>
+        The "migration" command accepts one arguments. 
+        The environment the migrations are going to be run against.
+    </p>
+    <pre><code>
+       vendor/bin/phpsls migrate local
+    </code></pre>
+  </div>
+</section>
