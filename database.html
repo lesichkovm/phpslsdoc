@@ -1,0 +1,160 @@
+---
+layout: default
+title: Databases | PHPSLS
+permalink: /databases
+---
+<section>
+  <div class="container" style="padding:40px 0px;">
+    <h1>
+      Database
+    </h1>
+
+    <h2>
+      Introduction
+    </h2>
+    <p>
+        PHPSLS is database agnostic. You may use any database you want.
+        In the examples below we will use Laravel's Eloquent library
+        as it supports variety of database backends using either raw SQL,
+        the fluent query builder, and the Eloquent ORM. 
+        Currently, Eloquent supports four databases: MySQL, PostgreSQL,
+        SQLite, and SQL Server
+    </p>
+    
+    <h2>
+      Installing Eloquent
+    </h2>
+
+    <p>
+        Using composer
+    </p>
+
+    <pre><code>
+composer require illuminate/database
+    </code></pre>
+
+    <h2>
+      Configuration
+    </h2>
+
+    <p>
+        Add the following lines to your configuration files
+    </p>
+
+    <pre><code>
+"USE_ELOQUENT" => true,
+'DB' => [
+    'default_connection' => 'mysql',
+    'connections' => [
+        'sqlite' => [
+            'driver' => 'sqlite',
+            'database' => 'database.sqlite',
+            'prefix' => '',
+            'foreign_key_constraints' => true,
+        ],
+        'mysql' => [
+            'driver' => 'mysql',
+            'host' => 'db.yourdomain.com',
+            'port' => '3306',
+            'database' => 'your_database_name',
+            'username' => 'your_database_user',
+            'password' => 'your_database_pass',
+            'unix_socket' => '',
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'strict' => true,
+            'engine' => null,
+            'options' => [],
+        ],
+    ],
+],
+    </code></pre>
+
+    <h2>
+      Booting Eloquent
+    </h2>
+
+    <p>
+        Before we can use teh database we must boot it.
+        Add the following to your functions file.
+    </p>
+
+    <pre><code>
+if (\Sinevia\Registry::equals('USE_ELOQUENT', true)) {
+
+    /**
+     * Setups the Eloquent environment
+     * @return \Illuminate\Database\Capsule\Manager
+     */
+    function eloquent() {
+        $db = \Sinevia\Registry::get('DB');
+        if (is_array($db) == false) {
+            return;
+        }
+        $defaultConnection = $db['default_connection'];
+        $connections = $db['connections'];
+        $capsule = new \Illuminate\Database\Capsule\Manager;
+        foreach ($connections as $name => $connection) {
+            $capsule->addConnection($connection, $name);
+            if ($name == $defaultConnection) {
+                $capsule->addConnection($connection);
+            }
+        }
+
+        // Model events
+        $capsule->setEventDispatcher(new \Illuminate\Events\Dispatcher(new Illuminate\Container\Container));
+
+        //Make this Capsule instance available globally.
+        $capsule->setAsGlobal();
+
+        // Setup the Eloquent ORM.
+        $capsule->bootEloquent();
+
+        return $capsule;
+    }
+
+    eloquent(); // Initialize eloquent
+}
+    </code></pre>
+
+    <h2>
+      Using Eloquent
+    </h2>
+
+    <p>
+        You can use Eloquent with models as described on the
+        Laravel website, or directly in your migrations and seeds
+        following the examples below
+    </p>
+
+    <p>
+        Check if table exists
+    </p>
+
+    <pre><code>
+\Illuminate\Database\Capsule\Manager::schema('mysql')->hasTable('my_table');
+    </code></pre>
+
+    <p>
+        Create table
+    </p>
+
+    <pre><code>
+\Illuminate\Database\Capsule\Manager::schema('mysql')->create('mytable', function (\Illuminate\Database\Schema\Blueprint $table) use ($o) {
+    $table->engine = 'InnoDB';
+    $table->string($o->primaryKey, 40)->primary();
+    $table->string('Key', 255)->index();
+    $table->longtext('Value');
+    $table->datetime('ExpiresAt')->nullable();
+    $table->datetime('CreatedAt')->nullable();
+    $table->datetime('UpdatedAt')->nullable();
+    $table->datetime('DeletedAt')->nullable();
+    //$table->index(['Key']);
+});
+    </code></pre>
+
+
+    
+</section>
